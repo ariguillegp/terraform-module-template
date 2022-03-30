@@ -1,0 +1,13 @@
+log-level: INFO
+minimal-ui: true
+no-color: true
+no-progress: true
+report-formats: "json"
+path: "./"
+output-path: "./"
+output-name: "kics-report.json"
+silent: false
+verbose: false
+fail-on: high
+# Exclude the below paths because those files aren't being committed due to being module code or containing secrets
+exclude-paths: '.terraform/*,examples/*/terraform.tfvars,examples/*/.terraform'

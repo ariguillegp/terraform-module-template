@@ -1,0 +1,52 @@
+repos:
+- repo: https://github.com/crate-ci/typos
+  rev: v1.5.0
+  hooks:
+  - id: typos
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-shebang-scripts-are-executable
+  - id: check-json
+  - id: pretty-format-json
+    args:
+    - --autofix
+  - id: check-merge-conflict
+  - id: check-symlinks
+  - id: destroyed-symlinks
+  - id: check-yaml
+  - id: detect-private-key
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-docstring-first
+  - id: debug-statements
+  - id: fix-byte-order-marker
+  - id: mixed-line-ending
+  - id: requirements-txt-fixer
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.17 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  hooks:
+  - id: tflint
+    args:
+    - "--module"
+    - "--config=.tflint.hcl"
+  - id: terraform-validate
+  - id: terraform-fmt
+  - id: shellcheck
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.62.3 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+  - id: terraform_tfsec
+  - id: terraform_docs
+  - id: checkov
+- repo: https://github.com/Checkmarx/kics
+  rev: 'v1.5.4' # change to correct tag or sha
+  hooks:
+  - id: kics
+    entry: kics scan --config .kics-config.yaml
+- repo: https://github.com/golangci/golangci-lint
+  rev: 'v1.43.0'
+  hooks:
+  - id: golangci-lint
+    entry: golangci-lint run --fast -v --enable-all -D wsl
